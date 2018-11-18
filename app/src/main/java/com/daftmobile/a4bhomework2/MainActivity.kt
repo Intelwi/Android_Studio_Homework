@@ -10,46 +10,47 @@ import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
 
-    val button1 = findViewById<Button>(R.id.button1)
-    val button2 = findViewById<Button>(R.id.button2)
-    val button3 = findViewById<Button>(R.id.button3)
-    val dialog:com.daftmobile.a4bhomework2.DialogFragment = com.daftmobile.a4bhomework2.DialogFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
-/*
-    button1.setOnClickListener{
-        dialog.onCreateDialog(Bundle?)
+        val button1 = findViewById<Button>(R.id.button1)
+        val button2 = findViewById<Button>(R.id.button2)
+        val button3 = findViewById<Button>(R.id.button3)
+        val dialog: DialogElem = DialogElem()
+        button1.setOnClickListener {
+            val fm = supportFragmentManager
+            dialog.show(fm,"cos")
+
+
+        }
+
+        button2.setOnClickListener {
+            val fm = supportFragmentManager
+            dialog.show(fm,"cos")
+        }
+
+        button3.setOnClickListener {
+            val fm = supportFragmentManager
+            dialog.show(fm,"cos")
+
+        }
 
     }
-
-    button2.setOnClickListener{
-        dialog.onCreateDialog(Bundle?)
-
-    }
-
-    button3.setOnClickListener{
-        dialog.onCreateDialog(Bundle?)
-
-    }
-*/
-
 }
+    class DialogElem : DialogFragment() {
 
-class DialogFragment : DialogFragment() {
-
-    override fun onCreateDialog(savedInstanceState: Bundle): Dialog {
-        return activity?.let {
-            val builder = AlertDialog.Builder(it)
-            builder.setMessage("Button red was tapped")
-                .setPositiveButton("ok",
-                    DialogInterface.OnClickListener { dialog, id -> okHandler()
-                    })
-            builder.create()
-        } ?: throw IllegalStateException("Activity cannot be null")
+        override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+            return activity?.let {
+                // Use the Builder class for convenient dialog construction
+                val builder = AlertDialog.Builder(it)
+                builder.setMessage("Kliknieto przycisk")
+                    .setPositiveButton("ok",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            // FIRE ZE MISSILES!
+                        })
+                // Create the AlertDialog object and return it
+                builder.create()
+            } ?: throw IllegalStateException("Activity cannot be null")
+        }
     }
-
-    private fun okHandler(){}
-}
