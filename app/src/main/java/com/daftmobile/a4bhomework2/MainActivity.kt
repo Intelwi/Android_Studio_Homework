@@ -20,31 +20,39 @@ class MainActivity : AppCompatActivity() {
         val dialog: DialogElem = DialogElem()
         button1.setOnClickListener {
             val fm = supportFragmentManager
+            dialog.setSignColor("red")
             dialog.show(fm,"cos")
-
-
         }
 
         button2.setOnClickListener {
             val fm = supportFragmentManager
+            dialog.setSignColor("green")
             dialog.show(fm,"cos")
         }
 
         button3.setOnClickListener {
             val fm = supportFragmentManager
+            dialog.setSignColor("blue")
             dialog.show(fm,"cos")
-
         }
 
     }
 }
-    class DialogElem : DialogFragment() {
 
+class DialogElem : DialogFragment() {
+
+        var color: String = "red"
+        fun setSignColor(color: String){
+            this.color = color
+        }
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             return activity?.let {
                 // Use the Builder class for convenient dialog construction
                 val builder = AlertDialog.Builder(it)
-                builder.setMessage("Kliknieto przycisk")
+
+                var text = getString(R.string.welcome_message, color)
+
+                builder.setMessage(text)
                     .setPositiveButton("ok",
                         DialogInterface.OnClickListener { dialog, id ->
                             // FIRE ZE MISSILES!
@@ -53,4 +61,4 @@ class MainActivity : AppCompatActivity() {
                 builder.create()
             } ?: throw IllegalStateException("Activity cannot be null")
         }
-    }
+}
