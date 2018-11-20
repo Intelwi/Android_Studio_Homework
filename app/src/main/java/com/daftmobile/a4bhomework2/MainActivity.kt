@@ -67,7 +67,6 @@ class DialogElem : DialogFragment() {
 
         override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
             return activity?.let {
-                // Use the Builder class for convenient dialog construction
                 val builder = AlertDialog.Builder(it)
 
                 var text = getString(R.string.welcome_message, color)
@@ -75,9 +74,7 @@ class DialogElem : DialogFragment() {
                 builder.setMessage(text)
                     .setPositiveButton("ok",
                         DialogInterface.OnClickListener { dialog, id ->
-                            // FIRE ZE MISSILES!
                         })
-                // Create the AlertDialog object and return it
                 builder.create()
             } ?: throw IllegalStateException("Activity cannot be null")
         }
